@@ -1,0 +1,49 @@
+public class Solution {
+    public int[] plusOne(int[] A) {
+        
+        
+        if(A.length == 0){
+            return A;
+        }
+        if(A.length == 1){
+            A[0]=A[0]+ 1;
+            return A;
+        }
+        int[] B;
+        int i,j;
+       
+        int zeroindex = 0;
+        int index = 0;
+        while(index<A.length - 1 && A[index] == 0){
+            zeroindex++;
+            index++;
+        }
+       // if(zeroindex > 0){
+            //B= new int[A.length-zeroindex];
+           long number=0;
+         // System.out.println("A.length: "+A.length+" zeroindex: "+zeroindex);
+            for(i = zeroindex,j=A.length - zeroindex-1;i<=A.length-1 && j>= 0;i++,j--){
+               //  B[j]=A[i];
+               number+=A[i] * Math.pow(10,j);
+          // System.out.println("i: "+i+" j: "+j+" number: "+number);
+            }
+            number += 1;
+//System.out.println("incremented number: "+number);
+
+            int bLength = Long.toString(number).length();
+            B = new int[bLength];
+            //int bindex = A.length - zeroindex - 1;
+            while(number > 0){
+               B[--bLength] = Math.toIntExact(number % 10);
+               number = number/10;
+            }
+                
+                
+        //}else{
+          //  A[A.length - 1] = A[A.length -1] + 1;
+        //    return A;
+        //}
+        
+        return B;
+    }
+}
